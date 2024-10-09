@@ -1,4 +1,4 @@
-const { query } = require('express');
+const  query  = require('express');
 const postController = require('../controllers/postController');
 const Post = require('../models/postModel');
 

@@ -10,5 +10,5 @@ done
 
 echo "MongoDB está disponível. Iniciando aplicação..."
 
-# Aqui você pode iniciar o seu processo principal, por exemplo:
+# Aqui inicia o projeto principal
 exec "$@"

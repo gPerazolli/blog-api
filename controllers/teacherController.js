@@ -4,6 +4,7 @@ const bcrypt = require('bcryptjs');
 
 const secret = process.env.JWT_SECRET;
 
+//logar professor
 exports.loginTeacher = async (req, res) =>{
     const { email, password } = req.body;
 
@@ -28,6 +29,7 @@ exports.loginTeacher = async (req, res) =>{
     }
 };
 
+//criar professor
 exports.registerTeacher = async (req, res) =>{
     const { email, password } = req.body;
 
@@ -56,6 +58,7 @@ exports.registerTeacher = async (req, res) =>{
     };
 };
 
+//buscar professor
 exports.getTeacher = async (req, res) =>{
     try{
         const teachers = await Teacher.find();
