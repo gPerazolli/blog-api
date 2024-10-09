@@ -1,0 +1,12 @@
+#Node.js modules
+node_modules
+
+#Variaveis de ambiente
+.env
+
+#Teste
+coverage
+tests
+
+#Git ignore
+.gitignore

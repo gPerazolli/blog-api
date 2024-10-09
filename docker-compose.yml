@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  mongo:
+    image: mongo
+    container_name: mongo_db
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    command: ["mongod", "--auth"]
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: usuario1
+      MONGO_INITDB_ROOT_PASSWORD: 123456
+      MONGO_LOG_LEVEL: error
+
+  app:
+    build: .
+    container_name: blog_api
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongo
+    environment:
+      MONGO_URI: mongodb://usuario1:123456@mongo_db:27017/blog?authSource=admin
+      JWT_SECRET: chaveSecreta1245Boa
+    volumes:
+      - .:/blog-api
+      - ./wait-for-mongo.sh:/wait-for-mongo.sh
+    entrypoint: ["sh", "/wait-for-mongo.sh", "npx", "nodemon", "server.js"]
+
+volumes:
+  mongo_data:

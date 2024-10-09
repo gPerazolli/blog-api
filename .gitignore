@@ -1,0 +1,8 @@
+#Node.js modules
+node_modules/
+
+#Variaveis de ambiente
+.env
+
+#Teste
+coverage/
