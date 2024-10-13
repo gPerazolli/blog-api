@@ -16,7 +16,7 @@ RUN apt-get update && apt-get install -y netcat-openbsd
 # Copia todo o código da aplicação
 COPY . .
 
-# Dê permissão de execução ao script wait-for-mongo.sh
+# permissão de execução ao script wait-for-mongo.sh
 RUN chmod +x wait-for-mongo.sh
 
 # Porta que a aplicação vai rodar
