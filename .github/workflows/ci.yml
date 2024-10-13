@@ -27,6 +27,9 @@ jobs:
           echo "MONGO_URI=${{ secrets.MONGO_URI }}" >> $GITHUB_ENV
           echo "PORT=3000"
 
+      - name: Give execute permissions to wait-for-mongo.sh
+        run: chmod +x wait-for-mongo.sh
+        
       - name: Wait for MongoDB
         run: ./wait-for-mongo.sh
 
