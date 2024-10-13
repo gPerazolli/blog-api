@@ -20,14 +20,14 @@ jobs:
 
     - name: Set environment variables
       run: |
-        echo "MONGO_URI=${{ secrets.MONGO_URI }}" >> $GITHUB_ENV
+        echo MONGO_URI: ${{ secrets.MONGO_URI }} 
         echo "PORT=3000" 
 
-    - name: Set up Docker
+    - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v2
 
     - name: Set up Docker Compose
-      run: sudo apt-get install docker-compose -y
+      uses: docker/compose-action@v3
 
     - name: Start services with Docker Compose
       run: docker-compose up -d
