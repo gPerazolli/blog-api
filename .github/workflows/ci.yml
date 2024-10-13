@@ -30,6 +30,9 @@ jobs:
       - name: Run Docker Compose
         run: docker-compose up  
 
+      - name: View logs from blog_api
+        run: docker-compose logs blog_api
+
       - name: Run tests
         run: docker-compose exec blog_api npm test -- --verbose
       
