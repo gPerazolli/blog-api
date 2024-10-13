@@ -30,14 +30,14 @@ jobs:
       - name: Run Docker Compose
         run: docker-compose up -d
 
-        - name: Get container ID
+      - name: Get container ID
         id: get_container_id
         run: |
-        echo "CONTAINER_ID=$(docker ps -qf 'name=blog_api')" >> $GITHUB_ENV
+          echo "CONTAINER_ID=$(docker ps -qf 'name=blog_api')" >> $GITHUB_ENV
         
       - name: Install dependencies
         run: docker exec ${{ env.CONTAINER_ID }} npm install
-        
+
       - name: Run tests
         run: docker exec ${{ env.CONTAINER_ID }} npm test -- --verbose
       
