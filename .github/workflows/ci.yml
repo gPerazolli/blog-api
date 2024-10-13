@@ -31,4 +31,5 @@ jobs:
         run: docker-compose up -d
 
       - name: Run tests
-        run: docker-compose exec blog_api npm test
+        run: docker-compose exec blog_api npm test -- --verbose
+      
