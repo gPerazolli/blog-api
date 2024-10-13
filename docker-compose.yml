@@ -27,7 +27,7 @@ services:
     volumes:
       - .:/blog-api
       - ./wait-for-mongo.sh:/wait-for-mongo.sh
-    entrypoint: ["sh", "/wait-for-mongo.sh", "npx", "nodemon", "server.js"]
+    entrypoint: ["sh", "/wait-for-mongo.sh", "node", "server.js"]
 
 volumes:
   mongo_data:

@@ -23,4 +23,5 @@ RUN chmod +x wait-for-mongo.sh
 EXPOSE 3000
 
 # Comando para rodar o servidor com o nodemon
-CMD ["npx", "nodemon", "server.js"]
+CMD ["node", "server.js"]
+
