@@ -1,6 +1,5 @@
 name: CI/CD Pipeline
 
-# eventos para disparar o wokflow
 on:
   push:
     branches:
@@ -10,30 +9,29 @@ on:
       - main
 
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
 
-
     steps:
-    - name: Check out code
-      uses: actions/checkout@v3
+      - name: Check out the repository
+        uses: actions/checkout@v3
 
-    - name: Set environment variables
-      run: |
-        echo MONGO_URI: ${{ secrets.MONGO_URI }} 
-        echo "PORT=3000" 
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
 
-    - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v2
+      - name: Set up Docker Compose
+        run: sudo apt-get install docker-compose
 
-    - name: Set up Docker Compose
-      uses: docker/compose-action@v3
+      - name: Set environment variables
+        run: |
+          echo "MONGO_URI=${{ secrets.MONGO_URI }}" >> $GITHUB_ENV
+          echo "PORT=3000"
 
-    - name: Start services with Docker Compose
-      run: docker-compose up -d
+      - name: Wait for MongoDB
+        run: ./wait-for-mongo.sh
 
-    - name: Wait for MongoDB
-      run: ./wait-for-mongo.sh 
+      - name: Run Docker Compose
+        run: docker-compose up -d
 
-    - name: Run tests
-      run: docker-compose exec blog_api npm test
+      - name: Run tests
+        run: docker-compose exec blog_api npm test
