@@ -28,7 +28,7 @@ jobs:
           echo "PORT=3000"
 
       - name: Run Docker Compose
-        run: docker-compose up -d
+        run: docker-compose up 
 
       - name: Run tests
         run: docker-compose exec blog_api npm test -- --verbose
