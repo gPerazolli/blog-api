@@ -1,0 +1,33 @@
+name: CI/CD Pipeline
+
+# eventos para disparar o wokflow
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v3
+
+    - name: Set environment variables
+      run: |
+        echo "MONGO_URI=${{ secrets.MONGO_URI }}" >> $GITHUB_ENV
+        echo "PORT=3000" 
+
+    - name: Set up Docker Compose
+      run: docker-compose up -d
+
+    - name: Wait for MongoDB
+      run: ./wait-for-mongo.sh 
+
+    - name: Run tests
+      run: docker-compose exec blog_api npm test
