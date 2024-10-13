@@ -28,7 +28,7 @@ jobs:
           echo "PORT=3000"
 
       - name: Run Docker Compose
-        run: docker-compose up  
+        run: docker-compose up -d
 
       - name: View logs from blog_api
         run: docker-compose logs blog_api
