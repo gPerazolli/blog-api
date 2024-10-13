@@ -30,9 +30,11 @@ jobs:
       - name: Run Docker Compose
         run: docker-compose up -d
 
-      - name: View logs from blog_api
-        run: docker-compose logs blog_api
+      - name: Get container ID
+        id: get_container_id
+        run: |
+          echo "CONTAINER_ID=$(docker ps -qf 'name=blog_api')" >> $GITHUB_ENV
 
       - name: Run tests
-        run: docker-compose exec blog_api npm test -- --verbose
+        run: docker exec ${{ env.CONTAINER_ID }} npm test -- --verbose
       
