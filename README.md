@@ -24,8 +24,8 @@ Antes de começar, verifique se você possui as seguintes ferramentas instaladas
    Abra um terminal e execute o seguinte comando:
 
    ```bash
-   git clone https://github.com/seu_usuario/nome-do-repositorio.git
-   cd nome-do-repositorio
+   git clone https://github.com/gPerazolli/blog-api
+   cd blog-api
 
 2. **Configuração do Ambiente**
 
